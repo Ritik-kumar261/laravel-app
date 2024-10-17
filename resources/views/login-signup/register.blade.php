@@ -25,7 +25,7 @@
                             <form action="{{route('account.processregister')}}" method="post">
                                 @csrf
                                 <div class="row gy-3 overflow-hidden">
-                                    <div class="col-12">
+                                    <div class="col-6">
                                         <div class="form-floating mb-3">
                                             <input type="text" value="{{old('name')}}"
                                                 class="form-control @error('name') is-invalid @enderror" name="name"
@@ -36,7 +36,7 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-12">
+                                    <div class="col-6">
                                         <div class="form-floating mb-3">
                                             <input type="text" value="{{old('email')}}"
                                                 class="form-control @error('email') is-invalid @enderror" name="email"
@@ -47,7 +47,7 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-12">
+                                    <div class="col-6">
                                         <div class="form-floating mb-3">
                                             <input type="text" value="{{old('roll_number')}}"
                                                 class="form-control @error('roll_number') is-invalid @enderror"
@@ -58,7 +58,7 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-12">
+                                    <div class="col-6">
                                         <div class="form-floating mb-3">
                                             <input type="tel" value="{{old('phone_number')}}"
                                                 class="form-control @error('phone_number') is-invalid @enderror"
@@ -69,23 +69,23 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    
-                                    
-                                    <div class="col-12">
+
+
+                                    <div class="col-6">
                                         <div class="form-floating mb-3">
                                             <select class="form-control @error('role') is-invalid @enderror" name="role"
                                                 id="role">
-                                            
+
                                                 <option value="student">student</option>
                                                 <option value="admin">admin</option>
                                             </select>
-                                            <label   for="role" class="form-label">Role</label>
+                                            <label for="role" class="form-label">Role</label>
                                             @error('role')
                                                 <p class="invalid-feedback">{{ $message }}</p>
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-12">
+                                    <div class="col-6">
                                         <div class="form-floating mb-3">
                                             <input type="password" value="{{old('password')}}"
                                                 class="form-control @error('password') is-invalid @enderror"
@@ -96,13 +96,29 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-12">
+                                    <div class="col-6">
                                         <div class="form-floating mb-3">
                                             <input type="password"
-                                                class="form-control @error('password') is-invalid @enderror"
-                                                name="password_confirmation" id="password_confirmation" value=""
+                                                class="form-control @error('confirmation_password') is-invalid @enderror"
+                                                name="password_confirmation" id="confirmation_password" 
                                                 placeholder="Confirm Password">
+                                            @error('confirmation_password')
+                                                <p class="invalid-feedback">{{ $message}}</p>
+                                            @enderror
                                             <label for="password" class="form-label">Confirm Password</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-floating mb-3">
+                                            <input type="url"
+                                                class="form-control @error('confirmation_password') is-invalid @enderror"
+                                                name="url" id="linkdinid" pattern="https?://.+" value="{{old('url')}}"
+                                                placeholder="Linkedin id" title="URL must start with https://">
+                                                <label for="url" class="form-label">linkdin id</label>
+
+                                            @error('confirmation_password')
+                                                <p class="invalid-feedback">{{ $message}}</p>
+                                            @enderror
                                         </div>
                                     </div>
 
@@ -118,7 +134,8 @@
                                 <div class="col-12">
                                     <hr class="mt-5 mb-4 border-secondary-subtle">
                                     <div class="d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-center">
-                                        <a href="{{route('account.login')}}" class="link-secondary text-decoration-none">Click here to login</a>
+                                        <a href="{{route('account.login')}}"
+                                            class="link-secondary text-decoration-none">Click here to login</a>
                                     </div>
                                 </div>
                             </div>

@@ -18,6 +18,8 @@ return new class extends Migration {
             $table->string('phone_number')->nullable(); // Make phone number nullable if it's not required
             $table->enum('role', ['student', 'admin'])->default('student');
             $table->string('password');
+            $table->string('url')->nullable(); // Add the URL column, nullable if not required
+
             // Use integer for whole numbers
             $table->timestamps();
         });

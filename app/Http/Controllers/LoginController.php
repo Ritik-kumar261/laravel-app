@@ -79,6 +79,8 @@ class LoginController extends Controller
             'roll_number' => 'required|integer', // Adjust max length as needed
             'phone_number' => 'required|integer',
             'password' => 'required|confirmed',
+            'url' => ['required', 'url', 'regex:/^https:\/\/.*/'],
+
 
         ]);
 
@@ -90,6 +92,7 @@ class LoginController extends Controller
             $user->phone_number = $request->phone_number;
             $user->role = $request->role;
             $user->password = bcrypt($request->password);
+            $user->url = $request->url;
             $user->save();
 
 
