@@ -52,7 +52,7 @@ class LoginController extends Controller
                     return redirect()->route('account.dashboard')->with('success', 'You are logged in');
 
                 }
-                
+
             } else {
                 return redirect()->route('account.login')->withInput()->with('error', 'invalid credential');
             }
@@ -64,7 +64,7 @@ class LoginController extends Controller
         }
 
     }
-    // here is the register logic come 
+    // here is the register logic come
     public function register()
     {
 
@@ -79,7 +79,8 @@ class LoginController extends Controller
             'roll_number' => 'required|integer', // Adjust max length as needed
             'phone_number' => 'required|integer',
             'password' => 'required|confirmed',
-            'url' => ['required', 'url', 'regex:/^https:\/\/.*/'],
+            'url' => ['required', 'regex:/^(https?:\/\/)?(www\.)?[a-zA-Z0-9\-]+(\.[a-zA-Z]{2,})(\/.*)?.+$/']
+
 
 
         ]);

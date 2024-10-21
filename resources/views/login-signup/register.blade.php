@@ -100,7 +100,7 @@
                                         <div class="form-floating mb-3">
                                             <input type="password"
                                                 class="form-control @error('confirmation_password') is-invalid @enderror"
-                                                name="password_confirmation" id="confirmation_password" 
+                                                name="password_confirmation" id="confirmation_password"
                                                 placeholder="Confirm Password">
                                             @error('confirmation_password')
                                                 <p class="invalid-feedback">{{ $message}}</p>
@@ -110,21 +110,25 @@
                                     </div>
                                     <div class="col-6">
                                         <div class="form-floating mb-3">
-                                            <input type="url"
-                                                class="form-control @error('confirmation_password') is-invalid @enderror"
-                                                name="url" id="linkdinid" pattern="https?://.+" value="{{old('url')}}"
-                                                placeholder="Linkedin id" title="URL must start with https://">
-                                                <label for="url" class="form-label">linkdin id</label>
-
-                                            @error('confirmation_password')
-                                                <p class="invalid-feedback">{{ $message}}</p>
+                                            <input type="text" value="{{old('url')}}"
+                                                class="form-control @error('url') is-invalid @enderror" id="urlInput"
+                                                name="url" placeholder="Enter URL"
+                                                title="Enter a Valid URL: Must Start with http://, https://, or www. Followed by a Domain Name (e.g., www.example.com or https://example.com)">
+                                            <label for="url" class="form-label">URL</label>
+                                            @error('url')
+                                                <p class="invalid-feedback">{{$message}}</p>
                                             @enderror
+                                            <p id="urlError" class="invalid-feedback" style="display: none;"></p>
+
                                         </div>
                                     </div>
 
+
+
                                     <div class="col-12">
                                         <div class="d-grid">
-                                            <button class="btn bsb-btn-xl btn-primary py-3" type="submit">Register
+                                            <button id="submitbutton" class="btn bsb-btn-xl btn-primary py-3"
+                                                type="submit">Register
                                                 Now</button>
                                         </div>
                                     </div>
@@ -148,6 +152,29 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#urlInput').on('input', function (e) {
+                e.preventDefault();
+                const urlPattern = /^(https?:\/\/|www\.)[a-zA-Z0-9\-]+\.[a-zA-Z]{2,}(\/.*)?.+$/;
+                const urlValue = $(this).val();
+
+                if (urlPattern.test(urlValue)) {
+                    $('#urlError').hide(); // Hide error if the URL is valid
+                    $(this).removeClass('is-invalid');
+                    $('#submitbutton').prop('disabled', false);
+                } else {
+                    $('#urlError').text('Please enter a valid URL starting with http://, https://, or www.').show(); // Show error
+                    $(this).addClass('is-invalid');
+                    $('#submitbutton').prop('disabled', true);
+
+                }
+            });
+        });
+
+    </script>
 </body>
 
 </html>

@@ -9,6 +9,7 @@ use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\ListDataController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\SendotpController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RewardPointController;
 use App\Http\Controllers\NumberOfDaysController;
@@ -101,5 +102,10 @@ Route::delete('/admin/students/{id}', [AdminDashboardController::class, 'destroy
 // here we define the route about listdata
 
 
+
+//api
+Route::post('/account/emailotp-again', [SendotpController::class,'sendOtp'])->name('email.otp');
+Route::get('/account/emailotp-token', [SendotpController::class,'token'])->name('email.otp.token');
+Route::post('/account/emailotp-verrify', [SendotpController::class,'otpVerrify'])->name('email.otp.verrify');
 
 
