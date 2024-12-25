@@ -122,6 +122,20 @@
 
                                         </div>
                                     </div>
+                                    <div class="col-12">
+                                        <div class="form-floating mb-3">
+                                            <input type="img" value="{{old('url')}}"
+                                                class="form-control @error('url') is-invalid @enderror" id="urlInput"
+                                                name="img" placeholder="Select the Image"
+                                                title="Enter a Valid URL: Must Start with http://, https://, or www. Followed by a Domain Name (e.g., www.example.com or https://example.com)">
+                                            <label for="url" class="form-label">Profile-photo</label>
+                                            @error('url')
+                                                <p class="invalid-feedback">{{$message}}</p>
+                                            @enderror
+                                            <p id="urlError" class="invalid-feedback" style="display: none;"></p>
+
+                                        </div>
+                                    </div>
 
 
 

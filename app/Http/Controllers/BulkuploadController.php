@@ -27,7 +27,7 @@ class BulkuploadController extends Controller
         $file = $request->file('csvFile');
         $path = $file->getRealPath();
         $data = array_map('str_getcsv', file($path));
-        var_dump($data);
+        //var_dump($data);
         // dd($data);
         // Read CSV file into an array
         $header = array_shift($data); // Get the header
